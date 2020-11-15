@@ -1,0 +1,19 @@
+.djinn-header {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  background-color: #4e3d63;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-height: 80px;
+
+  img {
+    max-height: 80px;
+    max-width: 100%;
+  }
+
+  .golden-sun-icon {
+    max-height: 80px;
+  }
+} // .djinn-header

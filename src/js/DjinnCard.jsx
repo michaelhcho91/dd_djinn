@@ -1,4 +1,4 @@
-import { getGifSrcUrl, getPngSrcUrl } from '../resources/getMedia.js';
+import { getGifSrcUrl, getEntrySrcUrl } from '../resources/getMedia.js';
 
 const DjinnCard = ({ djinn = {} }) => {
   const { id, name, description, effect } = djinn;
@@ -8,7 +8,7 @@ const DjinnCard = ({ djinn = {} }) => {
       <div className="djinn-card-container" key={id}>
         <div className="djinn-name">{name}</div>
         <div className="djinn-description">{description}</div>
-        <img className="djinn-png" alt="name" src={getPngSrcUrl(name)} />
+        <img className="djinn-png" alt="name" src={getEntrySrcUrl(name)} />
         <img className="djinn-gif" alt="name" src={getGifSrcUrl(name)} />
         <div className="djinn-effect">{effect}</div>
       </div>
