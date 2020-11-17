@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 export const getGifSrcUrl = (name) => {
   return `${process.env.PUBLIC_URL}/images/gifs/${name.toLowerCase()}.gif`;
 };

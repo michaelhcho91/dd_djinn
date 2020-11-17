@@ -1,15 +1,22 @@
+import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { initializeCanvas } from './Canvas';
 import { getImageSrcUrl } from '../resources/getMedia.js';
 
 const Home = () => {
+  useEffect(() => {
+    const componentHeight = document.getElementById('home-container').clientHeight;
+    initializeCanvas(componentHeight);
+  });
+
   return (
-    <section className="home-container">
+    <section id="home-container" className="home-container">
       <img src={getImageSrcUrl('splash')} alt="splash" />
       <div className="nav-links">
-        <Link key="venus" to="/venus">Venus</Link>
-        <Link key="mars" to="/mars">Mars</Link>
-        <Link key="jupiter" to="/jupiter">Jupiter</Link>
-        <Link key="mercury" to="/mercury">Mercury</Link>
+        <Link key="venus" to="/venus" />
+        <Link key="mars" to="/mars" />
+        <Link key="jupiter" to="/jupiter" />
+        <Link key="mercury" to="/mercury" />
       </div>
     </section>
   );

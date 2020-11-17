@@ -1,4 +1,4 @@
-.djinn-card-container {
+.djinni-card-container {
   position: relative;
   font-family: Tahoma,Arial,Helvetica;
   color: #422108;
@@ -6,39 +6,41 @@
   width: 275px;
   height: 185px;
   margin: 15px;
+  z-index: 1;
+  box-shadow: 1px 5px 6px rgba(0,0,0,.4);
 
   > * {
     position: absolute;
   }
   
-  .djinn-name {
+  .djinni-name {
     top: 29px;
     left: 25px;
     font-size: 14px;
     font-weight: bold;
   }
 
-  .djinn-description {
+  .djinni-description {
     top: 46px;
     left: 28px;
     width: 39%;
     font-size: 11px;
   }
 
-  .djinn-png {
+  .djinni-png {
     position: unset;
   }
 
-  .djinn-gif {
+  .djinni-gif {
     top: 150px;
     left: 10px;
   }
 
-  .djinn-effect {
+  .djinni-effect {
     top: 157px;
     left: 40px;
     text-shadow: 1px 1px #000;
     color: #ffffff;
     font-size: 11px;
   }
-} // .djinn-card-container
+} // .djinni-card-container

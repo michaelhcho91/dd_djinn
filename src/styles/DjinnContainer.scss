@@ -1,22 +1,28 @@
 .djinn-container {
   display: flex;
   justify-content: center;
-  flex-flow: row wrap;
-  width: 80%;
+  z-index: -1;
 
-  .venus {
-    // add unique bg gradients
+  .djinn-card-wrapper {
+    width: 90%;
+    display: flex;
+    justify-content: center;
+    flex-flow: row wrap;
   }
 
-  .mercury {
-
+  &.venus {
+    background-image: linear-gradient(45deg, #0a4848, #8fa068);
   }
 
-  .mars {
-
+  &.mercury {
+    background-image: linear-gradient(45deg, #263b4d, #6a93b7);
   }
 
-  .jupiter {
+  &.mars {
+    background-image: linear-gradient(45deg, #4d2626, #b76a6a);
+  }
 
+  &.jupiter {
+    background-image: linear-gradient(45deg, #362b47, #8b75ac);
   }
 } // .djinn-container

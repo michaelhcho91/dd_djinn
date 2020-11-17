@@ -1,16 +1,16 @@
 import { getGifSrcUrl } from '../resources/getMedia.js';
-import djinn from '../resources/djinn.json';
+import djinnData from '../resources/djinnData.json';
 import DjinniGif from './DjinniGif.js';
 
-export const canvasHeight = window.innerHeight;
-export const canvasWidth = window.innerWidth;
+const CANVAS_WIDTH = window.innerWidth;
+const CANVAS_HEIGHT = window.innerHeight;
 
-export const initializeCanvas = () => {
+export const initializeCanvas = (height = null) => {
   const canvas = document.getElementById('canvas');
 
   if (canvas) {
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width = CANVAS_WIDTH;
+    canvas.height = height || CANVAS_HEIGHT;
     const context = canvas.getContext('2d');
   
     const animate = () => {
@@ -22,19 +22,24 @@ export const initializeCanvas = () => {
     };
 
     const djinnArray = [];
-    const venusDjinn = djinn.venus.djinn;
-    for (let i = 0; i < venusDjinn.length; i++) {
-      const djinni = venusDjinn[i];
-      const x = Math.random() * (canvasWidth);
-      const y = Math.random() * (canvasHeight);
-      const dx = Math.random() - 0.5;
-      const dy = Math.random() - 0.5;
 
-      const gif = new Image();
-      gif.src = getGifSrcUrl(djinni.name);
-      gif.onload = () => {
-        djinnArray.push(new DjinniGif(x, y, dx, dy, gif, context));
-      };
+    const element = window.location.hash.slice(2);
+    let djinnToRender = [];
+    if (element) djinnToRender = djinnData[element].djinn;
+    if (djinnToRender.length) {
+      for (let i = 0; i < djinnToRender.length; i++) {
+        const djinni = djinnToRender[i];
+        const x = Math.random() * (canvas.width);
+        const y = Math.random() * (canvas.height);
+        const dx = Math.random() - 0.5;
+        const dy = Math.random() - 0.5;
+  
+        const gif = new Image();
+        gif.src = getGifSrcUrl(djinni.name);
+        gif.onload = () => {
+          djinnArray.push(new DjinniGif(x, y, dx, dy, gif, context, canvas));
+        };
+      }
     }
 
     animate();

@@ -1,13 +1,12 @@
-import { canvasWidth, canvasHeight } from './Canvas.js';
-
 class DjinniGif {
-  constructor(x, y, dx, dy, gif, context) {
+  constructor(x, y, dx, dy, gif, context, canvas) {
     this.x = x;
     this.y = y;
     this.dx = dx;
     this.dy = dy;
     this.gif = gif;
     this.context = context;
+    this.canvas = canvas;
   }
 
   draw() {
@@ -16,22 +15,16 @@ class DjinniGif {
   }
 
   update() {
-    if (this.x > canvasWidth || this.x < 0) {
+    if (this.x > this.canvas.width || this.x < 0) {
       this.dx = -this.dx;
     }
 
-    if (this.y > canvasHeight || this.y < 0) {
+    if (this.y > this.canvas.height || this.y < 0) {
       this.dy = -this.dy;
     }
 
     this.x += this.dx;
     this.y += this.dy;
-
-    if (this.dx < 0) {
-      this.gif.className = 'going-left';
-    } else {
-      this.gif.className = '';
-    }
 
     this.draw();
   }

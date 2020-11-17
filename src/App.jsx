@@ -1,5 +1,6 @@
-import './App.scss';
+import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import './App.scss';
 import Header from './js/Header';
 import Home from './js/Home';
 import DjinnContainer from './js/DjinnContainer';
@@ -17,6 +18,6 @@ const App = () => {
       </Switch>
     </>
   );
-}
+};
 
 export default App;
