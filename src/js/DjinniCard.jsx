@@ -1,11 +1,11 @@
 import { getGifSrcUrl, getEntrySrcUrl } from '../resources/getMedia.js';
 
-const DjinnCard = ({ djinn = {} }) => {
-  const { id, name, description, effect } = djinn;
+const DjinniCard = ({ djinni = {} }) => {
+  const { id, name, description, effect } = djinni;
 
   if (id && name && description && effect) {
     return (
-      <div className="djinn-card-container" key={id}>
+      <div className="djinn-card-container">
         <div className="djinn-name">{name}</div>
         <div className="djinn-description">{description}</div>
         <img className="djinn-png" alt="name" src={getEntrySrcUrl(name)} />
@@ -18,4 +18,4 @@ const DjinnCard = ({ djinn = {} }) => {
   return null;
 };
 
-export default DjinnCard;
+export default DjinniCard;

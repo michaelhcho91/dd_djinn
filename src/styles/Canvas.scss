@@ -1,0 +1,9 @@
+#canvas {
+  position: absolute;
+  top: 0;
+  z-index: -1;
+
+  .going-left {
+    transform: scaleX(-1);
+  }
+} // #canvas
