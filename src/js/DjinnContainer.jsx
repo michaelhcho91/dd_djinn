@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import PropTypes from 'prop-types';
-import { initializeCanvas } from './Canvas';
-import djinnData from '../resources/djinnData.json';
+import DjinnCanvas from './DjinnCanvas';
 import DjinniCard from './DjinniCard';
+import djinnData from '../resources/djinnData.json';
+import { matchPathElement } from '../resources/utils';
 
 const propTypes = {
   location: PropTypes.shape({
@@ -11,26 +12,20 @@ const propTypes = {
 };
 
 const DjinnContainer = ({ location }) => {
+  const element = matchPathElement(location.pathname);
   useEffect(() => {
     const componentHeight = document.getElementById('djinn-container').clientHeight;
-    initializeCanvas(componentHeight);
+    DjinnCanvas.initialize(componentHeight, element);
   });
   
-  const elements = Object.keys(djinnData);
-  let type = '';
-  for (let i = 0; i < elements.length; i++) {
-    const element = elements[i];
-    if (location.pathname.includes(element)) type = element;
-  }
-
-  const djinnToRender = djinnData[type].djinn.map(djinni => {
+  const djinnToRender = djinnData[element].djinn.map(djinni => {
     return (
       <DjinniCard djinni={djinni} key={djinni.id} />
     );
   });
 
   return (
-    <section id="djinn-container" className={`djinn-container ${type}`}>
+    <section id="djinn-container" className={`djinn-container ${element}`}>
       <div className="djinn-card-wrapper">
         {djinnToRender}
       </div>

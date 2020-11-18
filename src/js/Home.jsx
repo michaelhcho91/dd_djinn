@@ -1,12 +1,12 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { initializeCanvas } from './Canvas';
+import DjinnCanvas from './DjinnCanvas';
 import { getImageSrcUrl } from '../resources/getMedia.js';
 
 const Home = () => {
   useEffect(() => {
     const componentHeight = document.getElementById('home-container').clientHeight;
-    initializeCanvas(componentHeight);
+    DjinnCanvas.initialize(componentHeight);
   });
 
   return (

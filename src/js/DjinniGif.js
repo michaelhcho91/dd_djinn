@@ -15,11 +15,11 @@ class DjinniGif {
   }
 
   update() {
-    if (this.x > this.canvas.width || this.x < 0) {
+    if (this.x > (this.canvas.width - this.gif.naturalHeight) || this.x < 0) {
       this.dx = -this.dx;
     }
 
-    if (this.y > this.canvas.height || this.y < 0) {
+    if (this.y > (this.canvas.height - this.gif.naturalHeight) || this.y < 0) {
       this.dy = -this.dy;
     }
 
