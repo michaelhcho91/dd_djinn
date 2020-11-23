@@ -1,6 +1,7 @@
 import { getGifSrcUrl } from '../resources/getMedia.js';
 import djinnData from '../resources/djinnData.json';
 import DjinniGif from './DjinniGif.js';
+// import { parseGIF, decompressFrames } from 'gifuct-js';
 
 class DjinnCanvas {
   constructor() {
@@ -10,12 +11,12 @@ class DjinnCanvas {
 
   initialize(height = null, element = '') {
     this.djinnArray = [];
-    const canvas = document.getElementById('canvas');
+    this.canvas = document.getElementById('canvas');
 
-    if (canvas) {
-      canvas.width = window.innerWidth;
-      canvas.height = height || window.innerHeight;
-      const context = canvas.getContext('2d');
+    if (this.canvas) {
+      this.canvas.width = window.innerWidth;
+      this.canvas.height = height || window.innerHeight;
+      this.context = this.canvas.getContext('2d');
 
       let djinnToRender = [];
       if (element) {
@@ -34,23 +35,29 @@ class DjinnCanvas {
 
       if (djinnToRender.length) {
         for (let i = 0; i < djinnToRender.length; i++) {
-          const speed = (element) ? 1 : 0.5;
           const djinni = djinnToRender[i];
-          const x = Math.random() * (canvas.width);
-          const y = Math.random() * (canvas.height);
-          const dx = Math.random() - speed;
-          const dy = Math.random() - speed;
-
-          const gif = new Image();
-          gif.src = getGifSrcUrl(djinni.name);
-          gif.onload = () => {
-            this.djinnArray.push(new DjinniGif(x, y, dx, dy, gif, context, canvas));
-          };
+          this.setDjinni(djinni, element);
         }
       }
     }
 
     this.animate();
+  }
+
+  setDjinni(djinni, element) {
+    const gif = new Image();
+    gif.src = getGifSrcUrl(djinni.name);
+    gif.onload = () => {
+      const widthRadius = gif.naturalWidth / 2;
+      const heightRadius = gif.naturalHeight / 2;
+      const speed = (element) ? 1 : 0.5;
+      const x = Math.random() * (this.canvas.width - widthRadius * 2) + widthRadius;
+      const y = Math.random() * (this.canvas.height - heightRadius * 2) + heightRadius;
+      const dx = Math.random() - speed;
+      const dy = Math.random() - speed;
+
+      this.djinnArray.push(new DjinniGif(x, y, dx, dy, gif, this.context, this.canvas));
+    };
   }
 
   animate() {

@@ -17,7 +17,7 @@ const DjinnContainer = ({ location }) => {
     const componentHeight = document.getElementById('djinn-container').clientHeight;
     DjinnCanvas.initialize(componentHeight, element);
   });
-  
+
   const djinnToRender = djinnData[element].djinn.map(djinni => {
     return (
       <DjinniCard djinni={djinni} key={djinni.id} />
