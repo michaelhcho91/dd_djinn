@@ -1,4 +1,4 @@
-.djinn-container {
+.djinn-index {
   display: flex;
   justify-content: center;
   z-index: -1;
@@ -25,4 +25,4 @@
   &.jupiter {
     background-image: linear-gradient(45deg, #362b47, #8b75ac);
   }
-} // .djinn-container
+} // .djinn-index

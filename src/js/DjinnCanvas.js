@@ -9,8 +9,13 @@ class DjinnCanvas {
     this.animate = this.animate.bind(this);
   }
 
-  initialize(height = null, element = '') {
+  reset() {
+    this.canvas = null;
+    this.context = null;
     this.djinnArray = [];
+  }
+
+  initialize(height = null, element = '') {
     this.canvas = document.getElementById('canvas');
 
     if (this.canvas) {
@@ -24,12 +29,8 @@ class DjinnCanvas {
       } else {
         Object.keys(djinnData).forEach(element => {
           const { djinn } = djinnData[element];
-          let i = 0;
-          while (i < 3) {
-            const randomDjinni = djinn[Math.floor(Math.random() * djinn.length)];
-            djinnToRender.push(randomDjinni);
-            i++;
-          }
+          const randomDjinni = djinn[Math.floor(Math.random() * djinn.length)];
+          djinnToRender.push(randomDjinni);
         });
       }
 
@@ -50,14 +51,25 @@ class DjinnCanvas {
     gif.onload = () => {
       const widthRadius = gif.naturalWidth / 2;
       const heightRadius = gif.naturalHeight / 2;
-      const speed = (element) ? 1 : 0.5;
+
       const x = Math.random() * (this.canvas.width - widthRadius * 2) + widthRadius;
       const y = Math.random() * (this.canvas.height - heightRadius * 2) + heightRadius;
-      const dx = Math.random() - speed;
-      const dy = Math.random() - speed;
+      const dx = this.getDelta(element);
+      const dy = this.getDelta(element);
 
       this.djinnArray.push(new DjinniGif(x, y, dx, dy, gif, this.context, this.canvas));
     };
+  }
+
+  getDelta(element) {
+    const speed = (element) ? 0.75 : 0.5;
+
+    let delta = Math.random() - speed;
+    while (delta === 0) {
+      delta = Math.random() - speed;
+    }
+
+    return delta;
   }
 
   animate() {

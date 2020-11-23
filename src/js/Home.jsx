@@ -7,6 +7,10 @@ const Home = () => {
   useEffect(() => {
     const componentHeight = document.getElementById('home-container').clientHeight;
     DjinnCanvas.initialize(componentHeight);
+
+    return () => {
+      DjinnCanvas.reset();
+    };
   });
 
   return (

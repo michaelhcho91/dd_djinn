@@ -11,11 +11,15 @@ const propTypes = {
   })
 };
 
-const DjinnContainer = ({ location }) => {
+const DjinnIndex = ({ location }) => {
   const element = matchPathElement(location.pathname);
   useEffect(() => {
-    const componentHeight = document.getElementById('djinn-container').clientHeight;
+    const componentHeight = document.getElementById('djinn-index').clientHeight;
     DjinnCanvas.initialize(componentHeight, element);
+
+    return () => {
+      DjinnCanvas.reset();
+    };
   });
 
   const djinnToRender = djinnData[element].djinn.map(djinni => {
@@ -25,7 +29,7 @@ const DjinnContainer = ({ location }) => {
   });
 
   return (
-    <section id="djinn-container" className={`djinn-container ${element}`}>
+    <section id="djinn-index" className={`djinn-index ${element}`}>
       <div className="djinn-card-wrapper">
         {djinnToRender}
       </div>
@@ -33,6 +37,6 @@ const DjinnContainer = ({ location }) => {
   );
 };
 
-DjinnContainer.propTypes = propTypes;
+DjinnIndex.propTypes = propTypes;
 
-export default DjinnContainer;
+export default DjinnIndex;
