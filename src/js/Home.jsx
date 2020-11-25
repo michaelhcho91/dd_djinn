@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import DjinnCanvas from './DjinnCanvas';
+import DjinnCanvas from './DjinnCanvas.js';
 import { getImageSrcUrl } from '../resources/getMedia.js';
 
 const Home = () => {

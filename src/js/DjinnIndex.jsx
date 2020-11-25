@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import DjinnCanvas from './DjinnCanvas';
 import DjinniCard from './DjinniCard';
 import djinnData from '../resources/djinnData.json';
-import { matchPathElement } from '../resources/utils';
+import { matchPathElement } from '../resources/utils.js';
 
 const propTypes = {
   location: PropTypes.shape({
@@ -11,30 +11,37 @@ const propTypes = {
   })
 };
 
-const DjinnIndex = ({ location }) => {
+const DjinnIndex = ({ location = { pathname: '' } }) => {
   const element = matchPathElement(location.pathname);
   useEffect(() => {
-    const componentHeight = document.getElementById('djinn-index').clientHeight;
-    DjinnCanvas.initialize(componentHeight, element);
+    const index = document.getElementById('djinn-index');
+    if (index) {
+      const componentHeight = document.getElementById('djinn-index').clientHeight;
+      DjinnCanvas.initialize(componentHeight, element);
+    }
 
     return () => {
       DjinnCanvas.reset();
     };
   });
 
-  const djinnToRender = djinnData[element].djinn.map(djinni => {
+  if (element) {
+    const djinnToRender = djinnData[element].djinn.map(djinni => {
+      return (
+        <DjinniCard djinni={djinni} key={djinni.id} />
+      );
+    });
+  
     return (
-      <DjinniCard djinni={djinni} key={djinni.id} />
+      <section id="djinn-index" className={`djinn-index ${element}`}>
+        <div className="djinni-card-wrapper">
+          {djinnToRender}
+        </div>
+      </section>
     );
-  });
+  }
 
-  return (
-    <section id="djinn-index" className={`djinn-index ${element}`}>
-      <div className="djinn-card-wrapper">
-        {djinnToRender}
-      </div>
-    </section>
-  );
+  return null;
 };
 
 DjinnIndex.propTypes = propTypes;

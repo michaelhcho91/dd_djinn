@@ -19,8 +19,8 @@ const DjinniCard = ({ djinni = {} }) => {
       <div className="djinni-card-container">
         <div className="djinni-name">{name}</div>
         <div className="djinni-description">{description}</div>
-        <img className="djinni-png" alt="name" src={getEntrySrcUrl(name)} />
-        <img className="djinni-gif" alt="name" src={getGifSrcUrl(name)} />
+        <img className="djinni-png" alt={name} src={getEntrySrcUrl(name)} />
+        <img className="djinni-gif" alt={name} src={getGifSrcUrl(name)} />
         <div className="djinni-effect">{effect}</div>
       </div>
     );
