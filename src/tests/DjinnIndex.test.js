@@ -1,14 +1,11 @@
 /* eslint-disable no-undef */
 import React from 'react';
-import { MemoryRouter } from 'react-router-dom';
 import { render } from '@testing-library/react';
 import DjinnIndex from '../js/DjinnIndex';
 
 const renderDjinnIndex = (pathname = '') => {
   render(
-    <MemoryRouter>
-      <DjinnIndex location={{ pathname }} />
-    </MemoryRouter>
+    <DjinnIndex location={{ pathname }} />
   );
 };
 
@@ -25,7 +22,6 @@ it('renders the canvas', () => {
   expect(document.getElementById('canvas')).toBeDefined();
 });
 
-it('returns null if there is no element', () => {
-  renderDjinnIndex();
-  expect(document.getElementById('djinn-index')).toBeNull();
+it('returns undefined if there is no element', () => {
+  expect(renderDjinnIndex()).toBeUndefined();
 });
